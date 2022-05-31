@@ -53,6 +53,7 @@ gem 'bulma-rails', '~> 0.9.3'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem 'omniauth-facebook'
 
 
 group :development, :test do
