@@ -56,6 +56,9 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 
+#gems to style
+gem 'simple_form', '~> 5.1'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
