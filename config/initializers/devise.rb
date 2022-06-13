@@ -314,4 +314,6 @@ Devise.setup do |config|
 
   #Config to authentifications
   config.omniauth :facebook, ENV["facebook_api_key"], ENV["facebook_api_secret"]
+  config.omniauth :github, ENV["github_api_key"], ENV["github_api_secret"], scope: 'user,public_repo'
+  config.omniauth :google_oauth2, ENV["google_api_key"], ENV["google_api_secret"], scope: 'userinfo.email, userinfo.profile'
 end
