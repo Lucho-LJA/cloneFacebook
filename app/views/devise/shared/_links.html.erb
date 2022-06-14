@@ -21,16 +21,14 @@
 </div>
  <%- if devise_mapping.omniauthable? %>
     <p class="subtitle is-5">Login using Social Media</p> 
-    <div class="columns">
-      <div class="column">
-        <%= button_to raw("<i class=\"fab fa-facebook-f fa-lg is-rounded\"></i>"), omniauth_authorize_path(resource_name, :facebook), data:{turbo: false}, class: "button is-medium  is-facebook" %>
-      </div>
-      <div class="column">
-        <%= button_to raw("<i class=\"fab fa-google fa-lg is-rounded\"></i>"), omniauth_authorize_path(resource_name, :google_oauth2), data:{turbo: false}, class: "button is-medium  is-google" %>
-      </div>
-      <div class="column">
-        <%= button_to raw("<i class=\"fab fa-github fa-lg is-rounded\"></i>"), omniauth_authorize_path(resource_name, :github), data:{turbo: false}, class: "button is-medium  is-github" %>
-      </div>
+    <div class="is-flex">
+      
+        <%= button_to raw("<i class=\"fab fa-facebook-f fa-lg is-rounded\"></i>"), omniauth_authorize_path(resource_name, :facebook), data:{turbo: false}, class: "button is-small  is-facebook" %>
+      
+        <%= button_to raw("<i class=\"fab fa-google fa-lg is-rounded\"></i>"), omniauth_authorize_path(resource_name, :google_oauth2), data:{turbo: false}, class: "button is-small  is-google" %>
+      
+        <%= button_to raw("<i class=\"fab fa-github fa-lg is-rounded\"></i>"), omniauth_authorize_path(resource_name, :github), data:{turbo: false}, class: "button is-small  is-github" %>
+      
   </div>
 <% end %>
 
