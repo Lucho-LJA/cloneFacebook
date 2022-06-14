@@ -55,6 +55,9 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem 'omniauth-facebook'
 gem 'omniauth-github'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog-aws'
 
 #gems to style
 gem 'simple_form', '~> 5.1'
