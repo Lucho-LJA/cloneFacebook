@@ -6,83 +6,119 @@
           <h2 class="title is-2">
             Edit <%= resource_name.to_s.humanize %>
           </h2>
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put}) do |f| %>
-          <%= f.error_notification %>
-          <div class="field">
-            <div class="control">
-              <%= f.input :email,
-                    required: true,
-                    input_html: { class: "input" },
-                    wrapper: false,
-                    label_html: { class: "label" } %>
-            </div>
-          </div>
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-          <div class="field">
-            <div class="control">
-              <%= f.input :password,
-                    required: false,
-                    wrapper: false,
-                    label_html: { class: "label" },
-                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { class: "input" } %>
-            </div>
-          </div>  
-
-          <div class="field">
-            <div class="control">
-              <%= f.input :password_confirmation,
-                    required: false,
-                    input_html: { class: "input" },
-                    wrapper: false,
-                    label_html: { class: "label" } %>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <%= f.input :current_password,
-                    hint: "We need your current password to confirm your changes",
-                    required: true,
-                    input_html: { class: "input" },
-                    wrapper: false,
-                    label_html: { class: "label" } %>
-            </div>
-          </div>
-
-          <% if current_user.avatar.url.present? %>
-          <%= image_tag(current_user.avatar.url) %>
-            
+        <% if current_user.provider.present? %>
+            You log in using a social network. You can't change the data.
             <div class="field">
               <div class="control">
-                <%= f.input :remove_avatar,
-                    wrapper: false,
-                    as: :boolean %>
+              <%= image_tag(current_user.img_auth)%>
               </div>
-            </div> 
+            </div>
+            <div class="field">
+              <div class="control">
+              <%= current_user.name%>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+              <%= current_user.username%>
+              </div>
+            </div>
+        <% else %>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put}) do |f| %>
+            <%= f.error_notification %>
+            <div class="field">
+              <div class="control">
+                <%= f.input :name,
+                      required: true,
+                      input_html: { class: "input" },
+                      wrapper: false,
+                      label_html: { class: "label" } %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <%= f.input :username,
+                      required: true,
+                      input_html: { class: "input" },
+                      wrapper: false,
+                      label_html: { class: "label" } %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <%= f.input :email,
+                      required: true,
+                      input_html: { class: "input" },
+                      wrapper: false,
+                      label_html: { class: "label" } %>
+              </div>
+            </div>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
 
-          <div class="field">
-            <div class="control">
-            <%= f.input :avatar, as: :file,
-              input_html: { class: "input" },
-              wrapper: false,
-              label_html: { class: "label" } %>
+            <div class="field">
+              <div class="control">
+                <%= f.input :password,
+                      required: false,
+                      wrapper: false,
+                      label_html: { class: "label" },
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { class: "input" } %>
+              </div>
+            </div>  
+
+            <div class="field">
+              <div class="control">
+                <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { class: "input" },
+                      wrapper: false,
+                      label_html: { class: "label" } %>
+              </div>
             </div>
-          </div>
-          <div class="field is-hidden">
-            <div class="control">
-            <%= f.input :avatar_cache, :as => :hidden%>
+
+            <div class="field">
+              <div class="control">
+                <%= f.input :current_password,
+                      hint: "We need your current password to confirm your changes",
+                      required: true,
+                      input_html: { class: "input" },
+                      wrapper: false,
+                      label_html: { class: "label" } %>
+              </div>
             </div>
-          </div>
+
+            <% if current_user.avatar.url.present? %>
+            <%= image_tag(current_user.avatar.url) %>
+              
+              <div class="field">
+                <div class="control">
+                  <%= f.input :remove_avatar,
+                      wrapper: false,
+                      as: :boolean %>
+                </div>
+              </div> 
+            <% end %>
+
+            <div class="field">
+              <div class="control">
+              <%= f.input :avatar, as: :file,
+                input_html: { class: "input" },
+                wrapper: false,
+                label_html: { class: "label" } %>
+              </div>
+            </div>
+            <div class="field is-hidden">
+              <div class="control">
+              <%= f.input :avatar_cache, :as => :hidden%>
+              </div>
+            </div>
 
 
-          <%= f.button :submit, "Update", class: "button is-info is-medium" %>
+            <%= f.button :submit, "Update", class: "button is-info is-medium" %>
+          <% end %>
         <% end %>
-
         <br />
         <h3 class= "title is-5">Cancel my account</h3>
         <p>Unhappy? <%= link_to "Cancel my account", 
