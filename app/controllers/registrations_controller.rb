@@ -19,4 +19,6 @@ class RegistrationsController < Devise::RegistrationsController
     def acount_update_params
         params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar)
     end
+
+    
 end

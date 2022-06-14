@@ -21,7 +21,7 @@ class User < ApplicationRecord
       p "holiholiholi"
       p auth.info.name.split(" ")
       p "holaholahola"
-      p auth.info
+      p auth.info.image
       name_split = auth.info.name.split(" ")
       user = User.where(email: auth.info.email).first
       user ||= User.create!(provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20])
