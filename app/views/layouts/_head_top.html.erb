@@ -1,0 +1,41 @@
+<% if flash[:notice] %>
+    <div class="notification is-primary global-notification">
+        <p class="notice"><%= notice %></p>
+    </div>
+<% end %>
+<% if flash[:alert] %>
+    <div class="notification is-danger global-notification">
+        <p class="alert"><%= alert %></p>
+    </div>
+<% end %>
+
+<nav class="navbar is-info">
+  <div class= "navbar-brand">
+    <%= link_to root_path, class: "navbar-item" do %>
+      <h1 class="title is-5"><%= title %></h1>
+    <% end%>
+  </div>
+  
+  <div class="navbar-end">
+      <div class="field is-grouped">
+        <p id= "btn-new" class="control">
+        <%= name_post%>
+        </p>
+        <% if user_signed_in? %>
+          
+          <p class="control">
+            <%= link_to 'Log Out', destroy_user_session_path, data: { "turbo-method": :delete }, class: "button is-info" %>
+          </p>
+        <% else %> 
+          <p class="control">
+            <%= link_to "Sign In", new_user_session_path, class: "button is-info" %>
+          </p>
+          <p class="control">
+            <%= link_to "Sign up", new_user_registration_path, class: "button is-info" %>
+          </p>
+        <% end %>
+
+      </div>
+    </div>
+  
+</nav>
