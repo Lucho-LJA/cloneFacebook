@@ -59,6 +59,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
 
+# Rubocop gem to correct linter related issues keeping your code close to standard coding practices
+gem 'rubocop'
+
 #gems to style
 gem 'simple_form', '~> 5.1'
 
