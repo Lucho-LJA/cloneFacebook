@@ -11,6 +11,10 @@ class RegistrationsController < Devise::RegistrationsController
     def after_registration_path(resource)
         root_path
     end
+    def after_sign_out_path_for(resource_or_scope)
+        p "hoollliii"
+        root_path
+    end
         
 
     def sign_up_params

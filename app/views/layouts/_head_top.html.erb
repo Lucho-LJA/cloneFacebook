@@ -24,7 +24,7 @@
         <% if user_signed_in? %>
           
           <p class="control">
-            <%= link_to 'Log Out', destroy_user_session_path, data: { "turbo-method": :delete }, class: "button is-info" %>
+            <%= button_to 'Log Out', destroy_user_session_path, method: :delete, data:{turbo: false},class: "button is-info" %>
           </p>
           <div class="control">
              <%= render 'layouts/img-profile', class_: "image is-32x32" %>
