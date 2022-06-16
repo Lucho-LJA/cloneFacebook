@@ -1,5 +1,5 @@
 <%  if not current_user.avatar.present?%>
-    <%= link_to image_tag(current_user.img_auth, class: class_), boards_show_path %>
+    <%= link_to image_tag(current_user.img_auth, class: class_), boards_show_path(current_user) %>
 <% else %>
-    <%= link_to image_tag(current_user.avatar.url, class: class_), boards_show_path %>
+    <%= link_to image_tag(current_user.avatar.url, class: class_), boards_show_path(current_user) %>
 <% end %>

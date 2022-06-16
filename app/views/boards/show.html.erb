@@ -1,2 +1,16 @@
-<h1>Boards#show</h1>
-<p>Find me in app/views/boards/show.html.erb</p>
+<div class="columns is-gapless is-desktop">
+    <div class="column">
+        <p class="title">Profile</p>
+    </div>
+    <div class="column media">
+         <%= render 'boards/img-profile-info', class_: " " %>
+    </div>
+</div>
+
+
+
+<div class="colums is-mobile">
+    <div class="colum">
+        <%= render '/boards/info_user', person:current_user %>
+    </div>
+</div>
