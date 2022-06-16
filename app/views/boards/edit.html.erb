@@ -3,3 +3,13 @@
     <%= render '/boards/form-img-porfile' %>
 </div>
 <% end %>
+<%= turbo_frame_tag "info-profile"  do %>
+<div class="container">
+    <%= render 'boards/form-info-profile' %>
+</div>
+<% end %>
+<%= turbo_frame_tag "pass-profile"  do %>
+<div class="container">
+    <%= render 'boards/form-pass-profile' %>
+</div>
+<% end %>
