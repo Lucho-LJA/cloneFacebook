@@ -46,6 +46,7 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name   # assuming the user model has a name
       user.img_auth = auth.info.image # assuming the user model has an image
+      user.username = auth.info.email.split("@").first+rand(1000).to_s unless user.id.present?
       user.skip_confirmation!
       user.save
       user
