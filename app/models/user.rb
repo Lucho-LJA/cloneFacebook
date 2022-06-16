@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
+  validate :avatar_size_validation
  
   private
     
@@ -22,9 +23,31 @@ class User < ApplicationRecord
       p auth.info.name.split(" ")
       p "holaholahola"
       p auth.info
-      name_split = auth.info.name.split(" ")
-      user = User.where(email: auth.info.email).first
-      user ||= User.create!(name:auth.info.name, username:auth.info.email.split("@").first+rand(1000).to_s, provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20], img_auth: auth.info.image)
-        user
+      #user = User.where(email: auth.info.email).first
+      #user ||= User.create!(name:auth.info.name, username:auth.info.email.split("@").first+rand(1000).to_s, provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20], img_auth: auth.info.image)
+      #  user
+      """
+      #Use to only login one time and never update 
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
+        user.name = auth.info.name   # assuming the user model has a name
+        user.img_auth = auth.info.image # assuming the user model has an image
+        user.avatar = auth.info.image
+        user.avatar_cache = ""
+        # If you are using confirmable and the provider(s) you use validate emails, 
+        # uncomment the line below to skip the confirmation emails.
+        user.skip_confirmation!
+      end
+      """
+      #Use to update data of user each he/she log in
+      user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name   # assuming the user model has a name
+      user.img_auth = auth.info.image # assuming the user model has an image
+      user.skip_confirmation!
+      user.save
+      user
     end
 end
