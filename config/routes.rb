@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'boards/index'
   get 'boards/show'
+  get 'boards/edit'
   devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: 'users/omniauth_callbacks'}
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

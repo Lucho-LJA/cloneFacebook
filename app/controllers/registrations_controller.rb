@@ -12,8 +12,10 @@ class RegistrationsController < Devise::RegistrationsController
         root_path
     end
     def after_sign_out_path_for(resource_or_scope)
-        p "hoollliii"
         root_path
+    end
+    def after_update_path_for(resource)
+        boards_show_path(current_user)
     end
         
 
@@ -26,9 +28,10 @@ class RegistrationsController < Devise::RegistrationsController
     def update_resource(resource, params)
         # Require current password if user is trying to change password.
         return super if params["password"]&.present?
-    
-        # Allows user to update registration information without password.
-        resource.update_without_password(params.except("current_password"))
+        #if params[:avatar].present?
+            # Allows user to update registration information without password.
+        resource.update_without_password(params.except("current_password")) 
+        #end
     end
 
     

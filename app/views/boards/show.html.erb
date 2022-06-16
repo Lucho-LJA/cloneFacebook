@@ -1,10 +1,16 @@
-<div class="columns is-gapless is-desktop">
-    <div class="column">
+<div class="is-flex is-flex-direction-column is-justify-content-center  is-align-content-center">
         <p class="title">Profile</p>
-    </div>
-    <div class="column media">
-         <%= render 'boards/img-profile-info', class_: " " %>
-    </div>
+        <div class="container">
+            <%= turbo_frame_tag "img-profile", target: "img-profile1" do %>
+                <%= render 'layouts/form_notice' %>
+                <%= render 'boards/img-profile-info', class_: " image  is-fullwidth is-flex" %>
+                <%= link_to "edit", boards_edit_path %>
+            <% end %>
+        </div>
+         <p class="title">Personal Data</p>
+         <%  if current_user.provider.present? %>
+            <%= render '/boards/info_user', person:current_user %>
+         <%end%>
 </div>
 
 
