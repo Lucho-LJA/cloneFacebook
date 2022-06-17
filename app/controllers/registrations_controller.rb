@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
         root_path
     end
     def after_sign_out_path_for(resource_or_scope)
-        root_path
+        new_user_session_path
     end
     def after_update_path_for(resource)
         boards_show_path(current_user)
@@ -23,7 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
         params.require(:user).permit(:name,:username, :email, :password, :password_confirmation,:remember_me, :avatar, :avatar_cache)
     end
     def acount_update_params
-        params.require(:user).permit(:name,:username, :email, :password, :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar)
+        params.require(:user).permit(:name,:username, :email, :password, :password_confirmation, :remember_me, :current_password, :avatar, :avatar_cache, :remove_avatar)
     end
     def update_resource(resource, params)
         # Require current password if user is trying to change password.
