@@ -4,7 +4,7 @@
             <%= turbo_frame_tag "img-profile", target: "img-profile1" do %>
                 <%= render 'layouts/form_notice' %>
                 <%= render 'boards/img-profile-info', class_: " image  is-fullwidth is-flex" %>
-                <%= link_to "edit", boards_edit_path %>
+                <%= link_to "edit", edit_board_url %>
             <% end %>
         </div>
         <section class="container">
@@ -20,8 +20,8 @@
                        
                                 <% unless current_user.provider.present? %>
                                     <div class = "is-flex is-flex-direction-column">
-                                        <%= link_to "Edit info",boards_edit_path, class: "button is-warning" %>
-                                        <%= link_to "Edit password",boards_edit_path, class: "button is-danger", "data-turbo-frame": "pass-profile" %>
+                                        <%= link_to "Edit info",edit_board_url, class: "button is-warning" %>
+                                        <%= link_to "Edit password",edit_board_url, class: "button is-danger", "data-turbo-frame": "pass-profile" %>
                                     </div>
                                 <%end%>
                             <% end %>

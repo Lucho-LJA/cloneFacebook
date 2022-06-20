@@ -1,10 +1,15 @@
-<% if flash[:notice] %>
-    <div class="notification is-primary global-notification">
-        <p class="notice"><%= notice %></p>
-    </div>
-<% end %>
-<% if flash[:alert] %>
-    <div class="notification is-danger global-notification">
-        <p class="alert"><%= alert %></p>
-    </div>
+<% flash.each do |message_type, message| %>
+    <% if message_type == 'notice' or message_type == 'success' %>
+        <div class= "notification global-notification is-primary" >
+            <p class="alert"><%= message %></p>
+        </div>
+    <% elsif message_type == 'alert' %>
+        <div class= "notification global-notification is-warning" >
+            <p class="alert"><%= message %></p>
+        </div>
+    <% elsif message_type == 'error' %>
+        <div class="notification global-notification is-danger" >
+            <p class="alert"><%= message %></p>
+        </div>
+    <% end %>
 <% end %>

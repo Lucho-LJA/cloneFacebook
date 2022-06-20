@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "boards#index"
   devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: 'users/omniauth_callbacks'}
   
-  resources :boards, only: %i[index show] do
+  resources :boards, only: %i[index show edit] do
     resources :friendships, only: %i[create] do
       collection do
         get 'accept_friend'
@@ -20,6 +20,5 @@ Rails.application.routes.draw do
 
   get 'boards/index'
   get 'boards/show'
-  get 'boards/edit'
   
 end
