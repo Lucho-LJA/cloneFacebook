@@ -9,6 +9,7 @@ class User < ApplicationRecord
   
   has_many :posts
   has_many :comments
+  has_many :likes, dependent: :destroy
 
   # User Avatar Validation
   validates_integrity_of  :avatar
