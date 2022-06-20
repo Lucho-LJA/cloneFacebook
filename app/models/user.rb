@@ -26,6 +26,8 @@ class User < ApplicationRecord
   has_many :received_requests, -> { merge(Friendship.not_friends) },
             through: :friend_request, source: :sent_by
 
+  has_many :notifications, dependent: :destroy
+  
   # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
