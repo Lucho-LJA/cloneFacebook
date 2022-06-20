@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  include ApplicationHelper
   def index
     @our_posts = current_user.friends_and_own_posts
   end
