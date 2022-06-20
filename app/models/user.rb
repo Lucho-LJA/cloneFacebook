@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :github, :google_oauth2]
   
   has_many :posts
+  has_many :comments
 
   # User Avatar Validation
   validates_integrity_of  :avatar
