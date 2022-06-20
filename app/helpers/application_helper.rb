@@ -18,8 +18,25 @@ module ApplicationHelper
   end
 ###
 
+  # Methods to LIke
+  ####
+  # Checks whether a post, user or comment has already been liked by the 
+  # current user returning either true or false
+  def liked?(subject, type)
+    result = false
+    result = Like.where(user_id: current_user.id,
+                          post_id: subject.id).exists? if type == 'post'
+    result = Like.where(user_id: current_user.id,
+                          comment_id: subject.id).exists? if type == 'comment'
+    result = Like.where(user_id: current_user.id,
+                          user_like_id: object.id).exists? if type == 'user'
+    result
+  end
 
-  # mthods to Noticfications
+  ####
+
+
+  # methods to Noticfications
   ###
   # Returns the new record created in notifications table
   def new_notification(user, notice_id, notice_type)
