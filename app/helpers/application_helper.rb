@@ -28,7 +28,7 @@ module ApplicationHelper
   end
   def notification_find(notice, type)
     return User.find(notice.notice_id) if type == 'friendRequest'
-    return User.find(notice.notice_id) if type == 'like'
+    return User.find(notice.notice_id) if type == 'like-user'
     return Post.find(notice.notice_id) if type == 'post'
     return Post.find(notice.notice_id) if type == 'comment'
     return Post.find(notice.notice_id) if type == 'like-post'
