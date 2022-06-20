@@ -7,6 +7,8 @@ class User < ApplicationRecord
          :confirmable,
          :omniauthable, omniauth_providers: [:facebook, :github, :google_oauth2]
   
+  has_many :posts
+
   # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
