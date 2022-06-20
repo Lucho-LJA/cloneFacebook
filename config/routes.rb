@@ -1,19 +1,20 @@
 Rails.application.routes.draw do
-  get 'friendships/create'
-  get 'likes/create'
-  get 'comments/new'
-  get 'comments/create'
-  get 'posts/index'
-  get 'posts/show'
-  get 'posts/new'
-  get 'posts/create'
+  root "boards#index"
+  devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: 'users/omniauth_callbacks'}
+  
+  resources :boards, only: %i[index show] do
+    resources :friendships, only: %i[create]
+    resources :likes, only: %i[create]
+  end
+  resources :posts, only: %i[index new create show destroy] do
+    resources :likes, only: %i[create]
+  end
+  resources :comments, only: %i[new create destroy] do
+    resources :likes, only: %i[create]
+  end
+
   get 'boards/index'
   get 'boards/show'
   get 'boards/edit'
-  devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: 'users/omniauth_callbacks'}
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-  root "boards#index"
+  
 end
