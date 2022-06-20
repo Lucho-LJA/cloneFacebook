@@ -18,6 +18,13 @@ class User < ApplicationRecord
             foreign_key: 'sent_to_id', 
             inverse_of: 'sent_to', 
             dependent: :destroy
+  
+  has_many :friends, -> { merge(Friendship.friends) }, 
+            through: :friend_sent, source: :sent_to
+  has_many :pending_requests, -> { merge(Friendship.not_friends) }, 
+            through: :friend_sent, source: :sent_to
+  has_many :received_requests, -> { merge(Friendship.not_friends) },
+            through: :friend_request, source: :sent_by
 
   # User Avatar Validation
   validates_integrity_of  :avatar
