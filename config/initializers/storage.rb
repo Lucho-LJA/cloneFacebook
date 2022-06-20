@@ -8,6 +8,6 @@ CarrierWave.configure do |config|
     }
     config.fog_directory  = "simplenetwork"
     config.fog_public     = false
-    config.cache_dir     = "#{Rails.root}/tmp/uploads"         # To let CarrierWave work on Heroku
-    config.storage       = :fog
+    #config.cache_dir     = "#{Rails.root}/tmp/uploads"         # To let CarrierWave work on Heroku
+    #config.storage       = :fog
   end

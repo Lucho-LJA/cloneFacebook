@@ -24,11 +24,10 @@
                                         <%= link_to "Edit password",boards_edit_path, class: "button is-danger", "data-turbo-frame": "pass-profile" %>
                                     </div>
                                 <%end%>
-                            
-                                
                             <% end %>
                             <%end%>
                         </div>
+                        <%= link_to "Advanced", edit_user_registration_path, class: "is-small" %>
                         <div class="panel-block is-flex is-justify-content-space-between">
                             <%= render '/layouts/indicators' %>
                         </div>

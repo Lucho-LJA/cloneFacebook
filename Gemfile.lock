@@ -354,7 +354,7 @@ DEPENDENCIES
   debug
   devise (~> 4.8, >= 4.8.1)
   figaro (~> 1.2)
-  fog-aws
+  fog-aws (~> 3.14)
   importmap-rails
   jbuilder
   letter_opener

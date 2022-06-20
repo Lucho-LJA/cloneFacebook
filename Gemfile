@@ -57,7 +57,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog-aws'
+gem 'fog-aws', '~> 3.14'
 
 # Rubocop gem to correct linter related issues keeping your code close to standard coding practices
 gem 'rubocop'
