@@ -1,7 +1,7 @@
 <div class="is-flex is-flex-direction-column is-justify-content-center  is-align-content-center">
         <p class="title">Profile</p>
         <div class="container">
-            <%= render 'boards/img-profile', user: User.find(params[:format])  %>
+            <%= render 'boards/img-profile', user: @user %>
         </div>
         <section class="container">
             <div class="colums is-flex is-justify-content-space-between">
@@ -15,7 +15,7 @@
                             <%= link_to "Advanced", edit_user_registration_path, class: "is-small" %>
                         <% end %>
                         <div class="panel-block is-flex is-justify-content-space-between">
-                            <%= render '/shared/indicators', person: User.find(params[:format])  %>
+                            <%= render '/shared/indicators', person: @user  %>
                         </div>
                     </nav>
                 </div>

@@ -1,17 +1,19 @@
 class LikesController < ApplicationController
   include ApplicationHelper
   def create
+    p "init create create create"
     p params
+    p current_user
     type = type_subject?(params)[0]
     @subject = type_subject?(params)[1]
     notice_type = "like-#{type}"
     
     return unless @subject
     if already_liked?(type)
-      dislike(type)
+      dislike(type, @subject)
     else
       @like = @subject.likes.build(user_id: current_user.id) if type != 'user'
-      @like = @subject.likes.build(user_id: current_user.id, user_like_id: params[:board_id]) if type == 'user'
+      @like = current_user.likes.build(user_like_id: params[:board_id]) if type == 'user'
       if @like.save
         #flash[:success] = "#{type} liked!"
         @notification = new_notification(@subject.user, @subject.id,
@@ -22,8 +24,9 @@ class LikesController < ApplicationController
       else
         flash[:danger] = "#{type} like failed!"
       end
-      redirect_back(fallback_location: root_path)
+      
     end
+    redirect_back(fallback_location: root_path)
   end
 
   private
@@ -43,6 +46,7 @@ class LikesController < ApplicationController
     if type == 'post'
       result = Like.where(user_id: current_user.id,
                           post_id: params[:post_id]).exists?
+      p result
     end
     if type == 'comment'
       result = Like.where(user_id: current_user.id,
@@ -55,13 +59,13 @@ class LikesController < ApplicationController
     result
   end
   
-  def dislike(type)
-    @like = Like.find_by(post_id: params[:post_id]) if type == 'post'
-    @like = Like.find_by(comment_id: params[:comment_id]) if type == 'comment'
-    @like = Like.find_by(user_like_id: params[:board_id]) if type == 'user'
+  def dislike(type, subject)
+    @like = Like.find_by(user_id: current_user,post_id: params[:post_id]) if type == 'post'
+    @like = Like.find_by(user_id: current_user,comment_id: params[:comment_id]) if type == 'comment'
+    @like = Like.find_by(user_id: current_user,user_like_id: params[:board_id]) if type == 'user'
     return unless @like
     
     @like.destroy
-    redirect_back(fallback_location: root_path)
+    #redirect_back(fallback_location: root_path)
   end
 end
