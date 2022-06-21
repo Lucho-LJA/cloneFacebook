@@ -10,6 +10,7 @@ class BoardsController < ApplicationController
 
   def show
     @post = Post.new
+    @user = User.find(params[:format])
   end
 
   def edit

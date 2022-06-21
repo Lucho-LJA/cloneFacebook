@@ -18,7 +18,7 @@
             <%= button_to 'Log Out', destroy_user_session_path, method: :delete, data:{turbo: false},class: "button is-info" %>
           </p>
           <div class="control">
-             <%= render 'shared/img-profile-rounded', class_: "image is-32x32", opt_button: true %>
+             <%= render 'shared/img-profile-rounded', user:current_user, class_: "image is-32x32", opt_button: true %>
             
           </div>
           

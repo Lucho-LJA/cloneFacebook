@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     </nav>
-                    <%= render '/posts/view-posts', only_user: false  %>
+                    <%= render 'posts/view-posts', only_user: false, user: current_user  %>
                      
                 </div>
                 <div class="column" style="width: 15rem">

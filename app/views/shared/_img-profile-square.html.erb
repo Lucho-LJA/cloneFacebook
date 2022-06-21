@@ -1,7 +1,7 @@
 <div class = "<%= class_ %>" >
-    <%  if not current_user.avatar.present?%>
-        <%= image_tag(current_user.img_auth, class: "is-square") %>
+    <%  if not user.avatar.present?%>
+        <%= image_tag(user.img_auth, class: "is-square") %>
     <% else %>
-        <%= image_tag(current_user.avatar.url, class: "is-square") %>
+        <%= image_tag(user.avatar.url, class: "is-square") %>
     <% end %>
 </div>

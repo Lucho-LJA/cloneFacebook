@@ -1,11 +1,7 @@
 <div class="is-flex is-flex-direction-column is-justify-content-center  is-align-content-center">
         <p class="title">Profile</p>
         <div class="container">
-            <%= turbo_frame_tag "img-profile", target: "img-profile1" do %>
-                <%= render 'layouts/form_notice' %>
-                <%= render 'shared/img-profile-square', class_: " image  is-fullwidth is-flex" %>
-                <%= link_to "edit", edit_board_url %>
-            <% end %>
+            <%= render 'boards/img-profile', user: User.find(params[:format])  %>
         </div>
         <section class="container">
             <div class="colums is-flex is-justify-content-space-between">
@@ -13,42 +9,40 @@
                      <nav class="panel" >
                         <p class="title">Personal Data</p>
                         <div class="panel-block is-flex is-justify-content-center ">
-                            <%= turbo_frame_tag "pass-profile" , class: "is-flex is-justify-content-space-between" do %>
-                            <%= turbo_frame_tag "info-profile" , class: "is-flex is-justify-content-space-between" do %>
-                                
-                                <%= render '/shared/info-user', person:current_user, opt_link: false %>
-                       
-                                <% unless current_user.provider.present? %>
-                                    <div class = "is-flex is-flex-direction-column">
-                                        <%= link_to "Edit info",edit_board_url, class: "button is-warning" %>
-                                        <%= link_to "Edit password",edit_board_url, class: "button is-danger", "data-turbo-frame": "pass-profile" %>
-                                    </div>
-                                <%end%>
-                            <% end %>
-                            <%end%>
+                            <%= render 'boards/form-data', person:@user %>
                         </div>
-                        <%= link_to "Advanced", edit_user_registration_path, class: "is-small" %>
+                        <% if @user == current_user %>
+                            <%= link_to "Advanced", edit_user_registration_path, class: "is-small" %>
+                        <% end %>
                         <div class="panel-block is-flex is-justify-content-space-between">
                             <%= render '/shared/indicators', person: User.find(params[:format])  %>
                         </div>
                     </nav>
                 </div>
                 <div class="column" style="width: 50rem">
-                    <nav class="panel" >
-                        <p class="title">Whats on your mind?</p>
-                        <div class="panel-block is-flex is-justify-content-center ">
-                            <div class="container">
-                                <%= render 'posts/new-post' %>
+                    <% if @user == current_user %>
+                        <nav class="panel" >
+                            <p class="title">Whats on your mind?</p>
+                            <div class="panel-block is-flex is-justify-content-center ">
+                                <div class="container">
+                                    <%= render 'posts/new-post' %>
+                                </div>
                             </div>
-                        </div>
-                    </nav>
+                        </nav>
+                    <% end %>
                    
-                        <%= render '/posts/view-posts', only_user: true  %>
-                    </nav>
+                        <%= render 'posts/view-posts', only_user: true, user: @user  %>
                     
                 </div>
                 <div class="column" style="width: 25%">
-                Friends
+                    <nav class="panel" >
+                        <p class="title is-4">people to meet</p>
+                        <div class="panel-block is-flex is-justify-content-center ">
+                            <div class="container">
+                                <%= render 'shared/view-nofriends'%>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
                
             </div>

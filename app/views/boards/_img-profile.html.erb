@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "img-profile", target: "img-profile1" do %>
+    <!--<%= render 'layouts/form_notice' %>-->
+    <%= render 'shared/img-profile-square', user:user ,class_: " image  is-fullwidth is-flex" %>
+    <% if user == current_user%>
+        <%= link_to "edit", edit_board_url(user) %>
+    <% end %>
+<% end %>

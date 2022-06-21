@@ -55,9 +55,18 @@ module ApplicationHelper
     request_sent = current_user.friend_sent.exists?(sent_to_id: user.id)
     request_received = current_user.friend_request.exists?(sent_by_id: user.id)
     
-    return true if request_sent != request_recieved    
-    return true if request_sent == request_recieved && request_sent == true    
-    return false if request_sent == request_recieved && request_sent == false
+    return true if request_sent != request_received    
+    return true if request_sent == request_received && request_sent == true    
+    return false if request_sent == request_received && request_sent == false
+  end
+
+  #not Friends
+  def not_friend?(user)
+    if not possible_friend?(user) and user != current_user 
+      true
+    else
+      false
+    end
   end
   ###
 

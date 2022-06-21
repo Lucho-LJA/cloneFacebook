@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "pass-profile" , class: "is-flex is-justify-content-space-between" do %>
+    <%= turbo_frame_tag "info-profile" , class: "is-flex is-justify-content-space-between" do %>
+        <%= render '/shared/info-user', person: person, opt_link: false %>   
+        <% if person == current_user%>
+            <% unless current_user.provider.present? %>
+                <div class = "is-flex is-flex-direction-column">
+                    <%= link_to "Edit info",edit_board_url(person), class: "button is-warning" %>
+                    <%= link_to "Edit password",edit_board_url(person), class: "button is-danger", "data-turbo-frame": "pass-profile" %>
+                </div>
+            <%end%>
+        <% end %>
+    <% end %>
+<%end%>
