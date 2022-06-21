@@ -9,7 +9,15 @@ class User < ApplicationRecord
   
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+
   has_many :likes, dependent: :destroy
+  has_many :user_like, class_name: 'Like',
+            foreign_key: 'user_like_id',
+            inverse_of: 'user_like',
+            dependent: :destroy
+  has_many :likes_user, -> { merge(Like.likes_user) }, 
+            through: :user_like, source: :user_like
+  
   has_many :friend_sent, class_name: 'Friendship', 
             foreign_key: 'sent_by_id', 
             inverse_of: 'sent_by', 
@@ -42,10 +50,11 @@ class User < ApplicationRecord
         our_posts << p
       end
     end
-    posts.each do |p|
+    posts1 = posts
+    posts1.each do |p|
       our_posts << p
     end
-    our_posts
+    our_posts.sort_by{ |h| h[:updated_at] }.reverse!
   end
 
   private

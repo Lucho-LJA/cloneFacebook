@@ -1,0 +1,16 @@
+<div class="panel-block is-flex is-justify-content-center ">
+    <div class="container">
+        <%= render '/shared/info-user-lineal', person:owner, opt_link: true %>
+        <%= object.created_at.strftime('%m/%d/%Y - %H:%M')%>
+    </div>
+</div>
+<div class="panel-block is-flex is-flex-direction-column is-align-items-flex-start">
+        <P>
+        <%= object.content%>
+        </P> <br />
+        <div class="is-flex is-align-self-center">
+            <%  if object.img_url.present?%>
+                <%= image_tag(object.img_url.url)%>
+            <% end %>
+        </div>
+</div>

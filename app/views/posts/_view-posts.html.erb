@@ -1,0 +1,9 @@
+<% if only_user %>
+    <% current_user.posts.each do |post| %>
+        <%= render 'posts/view-post', owner: post.user, object: post%>
+    <% end %>
+<% else %>
+    <% current_user.friends_and_own_posts.each do |post| %>
+        <%= render 'posts/view-post', owner: post.user, object: post%>
+    <% end %>
+<% end %>
