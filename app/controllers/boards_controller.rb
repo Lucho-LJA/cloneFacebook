@@ -5,6 +5,7 @@ class BoardsController < ApplicationController
     @pending_requests = current_user.pending_requests
     @friend_requests = current_user.received_requests
     @notifications = Notification.where(user_id:current_user.id)
+    @post = Post.new
   end
 
   def show

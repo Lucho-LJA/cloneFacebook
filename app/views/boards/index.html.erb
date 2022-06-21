@@ -4,11 +4,11 @@
                      <nav class="panel" >
                         <p class="title">Personal Data</p>
                         <div class="panel-block is-flex is-justify-content-center ">
-                          <%= render '/boards/info_user', person:current_user %>
+                          <%= render '/shared/info-user', person:current_user, opt_link: true %>
                        
                         </div>
                         <div class="panel-block is-flex is-justify-content-space-between">
-                            <%= render '/layouts/indicators' %>
+                            <%= render '/shared/indicators' %>
                         </div>
                         <div class="panel-block is-flex is-justify-content-space-between">
                             Friends
@@ -24,3 +24,6 @@
                
             </div>
         </section>
+
+
+

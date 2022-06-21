@@ -3,7 +3,7 @@
         <div class="container">
             <%= turbo_frame_tag "img-profile", target: "img-profile1" do %>
                 <%= render 'layouts/form_notice' %>
-                <%= render 'boards/img-profile-info', class_: " image  is-fullwidth is-flex" %>
+                <%= render 'shared/img-profile-square', class_: " image  is-fullwidth is-flex" %>
                 <%= link_to "edit", edit_board_url %>
             <% end %>
         </div>
@@ -16,7 +16,7 @@
                             <%= turbo_frame_tag "pass-profile" , class: "is-flex is-justify-content-space-between" do %>
                             <%= turbo_frame_tag "info-profile" , class: "is-flex is-justify-content-space-between" do %>
                                 
-                                <%= render '/boards/info_user', person:current_user %>
+                                <%= render '/shared/info-user', person:current_user, opt_link: false %>
                        
                                 <% unless current_user.provider.present? %>
                                     <div class = "is-flex is-flex-direction-column">
@@ -29,7 +29,7 @@
                         </div>
                         <%= link_to "Advanced", edit_user_registration_path, class: "is-small" %>
                         <div class="panel-block is-flex is-justify-content-space-between">
-                            <%= render '/layouts/indicators' %>
+                            <%= render '/shared/indicators' %>
                         </div>
                     </nav>
                 </div>
@@ -47,8 +47,4 @@
 
 
 
-<div class="colums is-mobile">
-    <div class="colum">
-        <%= render '/boards/info_user', person:current_user %>
-    </div>
-</div>
+

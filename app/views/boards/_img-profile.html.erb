@@ -1,7 +1,0 @@
-<div class = "<%= class_ %>" >
-    <%  if not current_user.avatar.present?%>
-        <%= image_tag(current_user.img_auth, class: "is-rounded") %>
-    <% else %>
-        <%= image_tag(current_user.avatar.url, class: "is-rounded") %>
-    <% end %>
-</div>
