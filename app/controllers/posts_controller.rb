@@ -18,7 +18,7 @@ class PostsController < ApplicationController
       @notification = new_notification(@post.user, @post.id, 
         'post')
       @notification.save
-      redirect_to @post
+      redirect_to root_path
     else
       render 'new'
     end

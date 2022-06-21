@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
                                       'comment')
       @notification.save
     end
-    redirect_to @post
+    redirect_to root_path
   end
 
   def destroy

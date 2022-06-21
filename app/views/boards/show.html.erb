@@ -1,5 +1,6 @@
 <div class="is-flex is-flex-direction-column is-justify-content-center  is-align-content-center">
         <p class="title">Profile</p>
+        <%= params[:format] %>
         <div class="container">
             <%= turbo_frame_tag "img-profile", target: "img-profile1" do %>
                 <%= render 'layouts/form_notice' %>
