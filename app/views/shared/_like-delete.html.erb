@@ -1,0 +1,31 @@
+<div class= "icons">
+        <span class="icon">
+            <% if type == 'comment'%>
+                <%= link_to comment_likes_path(object),class:"is-flex", data: {"turbo-method": :post} do %>
+                    <% if liked?(object, type) %>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <div><%= object.likes.count%></div> 
+                    <% else %>
+                        <i class="fa-regular fa-thumbs-up"></i>
+                    <% end %>
+                <% end %>
+            <% elsif type == 'post' %>
+                <%= link_to post_likes_path(object),class:"is-flex", data: {"turbo-method": :post} do %>
+                    <% if liked?(object, type) %>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <div><%= object.likes.count%></div> 
+                    <% else %>
+                        <i class="fa-regular fa-thumbs-up"></i>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </span>
+        <% if object.user == current_user%>
+            <span class="icon">
+                <%= link_to object, data: {"turbo-method": :delete, 
+                turbo_confirm: "Are you sure you want to delete it?"} do %>
+                    <i class="fa-solid fa-trash"></i>
+                <% end %>
+            </span>
+        <% end%>
+</div>

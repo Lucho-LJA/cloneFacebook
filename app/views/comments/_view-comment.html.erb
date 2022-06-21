@@ -1,8 +1,9 @@
 <div class="panel-block is-flex is-flex-direction-column is-align-items-flex-start">
     <div class="is-flex is-justify-content-space-around">
-        <%= render '/shared/info-user-lineal-small', person:person, opt_link: true, time:object.updated_at.strftime('%m/%d/%Y - %H:%M') %>
+        <%= render '/shared/info-user-lineal-small', person:person, opt_link: true, time:distance_of_time_in_words(object.updated_at, Time.now) %>
     </div>
     <div class="comment">
     <P><%= object.content%></P>
     </div>
+    <%= render 'shared/like-delete', object:object, type:"comment" %>
 </div>

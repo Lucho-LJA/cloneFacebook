@@ -29,7 +29,7 @@ module ApplicationHelper
     result = Like.where(user_id: current_user.id,
                           comment_id: subject.id).exists? if type == 'comment'
     result = Like.where(user_id: current_user.id,
-                          user_like_id: object.id).exists? if type == 'user'
+                          user_like_id: subject.id).exists? if type == 'user'
     result
   end
 

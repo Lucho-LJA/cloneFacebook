@@ -1,9 +1,16 @@
+
 <% if only_user %>
     <% current_user.posts.sort_by{ |h| h[:updated_at] }.reverse!.each do |post| %>
+        <nav class="panel">
         <%= render 'posts/view-post', owner: post.user, object: post%>
+        </nav>
     <% end %>
 <% else %>
     <% current_user.friends_and_own_posts.each do |post| %>
+        <nav class="panel">
         <%= render 'posts/view-post', owner: post.user, object: post%>
+        </nav>
     <% end %>
 <% end %>
+
+

@@ -1,9 +1,13 @@
-<div class="panel-block is-flex is-justify-content-center ">
+<div class="panel-block is-flex">
     <div class="container">
         <%= render '/shared/info-user-lineal', person:owner, opt_link: true %>
-        <%= object.updated_at.strftime('%m/%d/%Y - %H:%M')%>
+        <%= distance_of_time_in_words(object.updated_at, Time.now) %>
+    </div>
+    <div class="container">
+        <%= render 'shared/like-delete', object:object, type: "post" %>
     </div>
 </div>
+
 <div class="panel-block is-flex is-flex-direction-column is-align-items-flex-start">
         <P>
         <%= object.content%>
@@ -20,9 +24,12 @@
         </div>
 </div>
 <div class="panel-block is-flex is-flex-direction-column is-align-items-flex-start">
+    <% unless object.comments.count == 0%>
     <P>
         Comments
-    </P> <br />
+    </P> 
+    <br />
+    <%end%>
     <div class="is-flex is-flex-direction-column">
         <%= render 'comments/view-comments',object: object %>
     </div>

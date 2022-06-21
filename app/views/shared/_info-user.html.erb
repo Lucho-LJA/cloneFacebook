@@ -10,6 +10,7 @@
                 <strong><%= person.name %></strong><br />
                 <small>@<%= person.username %></small><br />
                 <small><%= person.email %></small>
+                <%= render 'shared/like-profile', object: person %>
             </p>
         </div>
     </div>

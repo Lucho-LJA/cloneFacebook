@@ -1,0 +1,8 @@
+
+    <%= link_to board_likes_path(object),class:"is-flex", data: {"turbo-method": :post} do %>
+        <% if liked?(object, "user") %>
+            <i class="fa-solid fa-thumbs-up"><small>Give me Like!</small></i>
+        <% else %>
+            <i class="fa-regular fa-thumbs-up">Give me Like!</i>
+        <% end %>
+    <% end %>

@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     return unless current_user.id == @post.user_id
 
     @post.destroy
-    flash[:success] = 'Post deleted'
+    #flash[:success] = 'Post deleted'
     redirect_back(fallback_location: root_path)
   end
   
