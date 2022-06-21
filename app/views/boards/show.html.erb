@@ -36,10 +36,10 @@
                 </div>
                 <div class="column" style="width: 25%">
                     <nav class="panel" >
-                        <p class="title is-4">people to meet</p>
+                        <p class="title is-4">Not friends yet</p>
                         <div class="panel-block is-flex is-justify-content-center ">
                             <div class="container">
-                                <%= render 'shared/view-nofriends'%>
+                                <%= render 'shared/view-nofriends', person: @user%>
                             </div>
                         </div>
                     </nav>

@@ -1,5 +1,5 @@
 <% User.all.each do |user| %>
-    <% if not_friend?(user) %>
+    <% if not_friend?(user, person) %>
         <div class="panel-block is-flex">
             <div class="container">
                 <%= render '/shared/info-user-lineal', person:user, opt_link: true %>
