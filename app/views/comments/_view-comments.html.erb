@@ -1,0 +1,3 @@
+<% object.comments.sort_by{ |h| h[:updated_at] }.reverse!.each do |comment| %>
+        <%= render 'comments/view-comment', person: comment.user, object: comment%>
+<% end %>

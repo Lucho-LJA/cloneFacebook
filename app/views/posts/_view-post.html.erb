@@ -1,7 +1,7 @@
 <div class="panel-block is-flex is-justify-content-center ">
     <div class="container">
         <%= render '/shared/info-user-lineal', person:owner, opt_link: true %>
-        <%= object.created_at.strftime('%m/%d/%Y - %H:%M')%>
+        <%= object.updated_at.strftime('%m/%d/%Y - %H:%M')%>
     </div>
 </div>
 <div class="panel-block is-flex is-flex-direction-column is-align-items-flex-start">
@@ -13,4 +13,17 @@
                 <%= image_tag(object.img_url.url)%>
             <% end %>
         </div>
+</div>
+<div class="panel-block is-flex is-flex-direction-column is-align-items-flex-start">
+        <div class="is-flex is-align-self-center">
+            <%= render 'comments/form-new-comment',object: object %>
+        </div>
+</div>
+<div class="panel-block is-flex is-flex-direction-column is-align-items-flex-start">
+    <P>
+        Comments
+    </P> <br />
+    <div class="is-flex is-flex-direction-column">
+        <%= render 'comments/view-comments',object: object %>
+    </div>
 </div>

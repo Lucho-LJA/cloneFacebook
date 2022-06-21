@@ -6,8 +6,6 @@ class BoardsController < ApplicationController
     @friend_requests = current_user.received_requests
     @notifications = Notification.where(user_id:current_user.id)
     @post = Post.new
-    @posts_user = [current_user]+@friends
-    p @posts_user
   end
 
   def show
