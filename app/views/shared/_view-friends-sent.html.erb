@@ -1,0 +1,7 @@
+<% person.pending_requests.each do |friend| %>
+    <div class="panel-block is-flex is-flex-direction-column">
+        <div class="container">
+            <%= render '/shared/info-user-lineal', person:friend, opt_link: true %>
+        </div>
+    </div>
+<% end %>

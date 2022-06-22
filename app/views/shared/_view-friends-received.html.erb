@@ -1,0 +1,15 @@
+<% person.received_requests.each do |friend| %>
+    <div class="panel-block is-flex is-flex-direction-column">
+        <div class="container">
+            <%= render '/shared/info-user-lineal', person:friend, opt_link: true %>
+        </div>
+        <div class="is-flex">
+            <div class="button is-primary is-small">
+                <%= link_to "Add as friend", accept_friend_board_friendships_path(friend), style:"color:white;"%>
+            </div>
+            <div class="button is-danger is-small">
+                <%= link_to "Add as friend",decline_friend_board_friendships_path(friend), style:"color:white;", turbo_confirm: "Are you sure? " %>
+            </div>
+        </div>
+    </div>
+<% end %>

@@ -1,8 +1,11 @@
 <% User.all.each do |user| %>
     <% if not_friend?(user, person) %>
-        <div class="panel-block is-flex">
+        <div class="panel-block is-flex is-flex-direction-column">
             <div class="container">
                 <%= render '/shared/info-user-lineal', person:user, opt_link: true %>
+            </div>
+            <div class="button">
+                <%= link_to "Add as friend", board_friendships_path(user), data:{"turbo-method": :post}%>
             </div>
         </div>
     <% end %>
