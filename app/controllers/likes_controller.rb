@@ -16,12 +16,12 @@ class LikesController < ApplicationController
       @like = current_user.likes.build(user_like_id: params[:board_id]) if type == 'user'
       if @like.save
         #flash[:success] = "#{type} liked!"
-        @notification = new_notification(user_id:@subject.user, notice_id:@subject.id,
-                                         notice_type:notice_type) if type == 'post'
-        @notification = new_notification(user_id:@subject.post.user, notice_id:@subject.id,
-                                          notice_type:notice_type) if type == 'comment'
-        @notification = new_notification(user_id: @subject.id, notice_id:current_user.id,
-                                          notice_type:notice_type) if type == 'user'
+        @notification = new_notification(@subject.user, @subject.id,
+                                         notice_type) if type == 'post'
+        @notification = new_notification(@subject.post.user, @subject.id,
+                                         notice_type) if type == 'comment'
+        @notification = new_notification(@subject.id, current_user.id,
+                                          notice_type) if type == 'user'
         @notification.save
       else
         flash[:danger] = "#{type} like failed!"

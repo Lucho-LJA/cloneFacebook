@@ -6,6 +6,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if Notification.where(user_id:current_user.id,notice_id:params[:id],notice_type:"like-post",seen:false).exists?
+      @notification = Notification.where(user_id:current_user.id,notice_id:params[:id],notice_type:"like-post",seen:false).first
+      @notification.update(seen:true)
+    end
   end
 
   def new
