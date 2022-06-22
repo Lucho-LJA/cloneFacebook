@@ -8,15 +8,31 @@
   </div>
   
   <div class="navbar-end">
+    <% if user_signed_in? %>
       <div class="field is-grouped">
-        <p id= "btn-new" class="control">
-        <%= name_post%>
-        </p>
-        <% if user_signed_in? %>
+          <% if current_user.notifications.count == 0%>
+            <i class="fa-regular fa-bell"></i>
+          <% else %>
+            <div class=" bell dropdown">
+              <div class="dropdown-trigger">
+                <button  class="button is-link is-rounded" aria-haspopup="true" aria-controls="dropdown-menu">
+                  <i class="fa-solid fa-bell" aria-hidden="true"><%= current_user.notifications.count%></i>  
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <%= render 'shared/view-notifications', user:current_user %>
+                </div>
+              </div>
+            </div>
+                        
+          <% end %>
+
+        
           
-          <p class="control">
+          <div class="control">
             <%= button_to 'Log Out', destroy_user_session_path, method: :delete, data:{turbo: false},class: "button is-info" %>
-          </p>
+          </div>
           <div class="control">
              <%= render 'shared/img-profile-rounded', user:current_user, class_: "image is-32x32", opt_button: true %>
             
@@ -35,3 +51,10 @@
     </div>
   
 </nav>
+<script>
+var dropdown = document.querySelector('.dropdown');
+dropdown.addEventListener('click', function(event) {
+  event.stopPropagation();
+  dropdown.classList.toggle('is-active');
+});
+</script>

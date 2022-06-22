@@ -1,0 +1,6 @@
+<% user.notifications.sort_by{ |h| h[:created_at] }.reverse!.each do |notice|%>
+    <div class="dropdown-item">
+       <%= render 'shared/view-notification', notice:notice, notice_element: notification_find(notice, notice.notice_type )  %>
+    </div>
+    <hr class="dropdown-divider">
+<% end %>

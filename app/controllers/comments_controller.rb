@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @post = Post.find(params[:comment][:post_id])
     if @comment.save
-      @notification = new_notification(@post.user, @post.id, 
+      @notification = new_notification(@post.user, @comment.id, 
                                       'comment')
       @notification.save
     end

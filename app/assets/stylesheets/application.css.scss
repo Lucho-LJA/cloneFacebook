@@ -53,3 +53,54 @@
    background-color: #dd0b0b;
    
 }
+
+.bell, .bell-border, .btn-bell {
+
+   border-radius: 50%;
+
+}
+
+.bell {
+
+   box-shadow: -1px 2px 10px #999;
+
+   background: #0e21c4;
+   animation-name: col;
+
+   animation-duration: 2s;
+
+   animation-iteration-count: infinite;
+
+}
+
+
+
+
+@keyframes col {
+
+   0% {
+
+       transform: scale(1) translate(0,0);
+
+   }
+
+   10% {
+
+       transform: scale(1.1) translate(0,0);
+
+   }
+
+   75% {
+
+       transform: scale(1) translate(0,0);
+
+   }
+
+   100% {
+
+       transform: scale(1) translate(0,0);
+
+   }
+
+}
+
