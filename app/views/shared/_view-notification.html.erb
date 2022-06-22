@@ -9,6 +9,7 @@
             <small><strong><%=notice_element.user.name%> </strong> has give like your post</small>
         <% elsif notice.notice_type == "like-user" %>
             <small><strong><%=notice_element.notice_id.name%> </strong> has give you a like</small>
-        <% elsif notice.notice_type == "comment" %>
-            <small><strong><%=notice_element.notice_id.name%> </strong> has commented your post</small>
+<% elsif notice.notice_type == "comment" %>
+    <small><%= notice_element.user.name %> has commented</small>
+    <%= link_to "your post",comment_path(notice_element), class: "is-strong is-small" %>
 <% end %>

@@ -16,7 +16,7 @@
             <div class=" bell dropdown">
               <div class="dropdown-trigger">
                 <button  class="button is-link is-rounded" aria-haspopup="true" aria-controls="dropdown-menu">
-                  <i class="fa-solid fa-bell" aria-hidden="true"><%= current_user.notifications.count%></i>  
+                  <i class="fa-solid fa-bell" aria-hidden="true"><%= current_user.notifications.where(seen:false).count%></i>  
                 </button>
               </div>
               <div class="dropdown-menu" id="dropdown-menu" role="menu">
