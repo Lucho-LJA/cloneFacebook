@@ -10,7 +10,7 @@
   <div class="navbar-end">
     <% if user_signed_in? %>
       <div class="field is-grouped">
-          <% if current_user.notifications.count == 0%>
+          <% if current_user.notifications.where(seen:false).count == 0%>
             <i class="fa-regular fa-bell"></i>
           <% else %>
             <div class=" bell dropdown">

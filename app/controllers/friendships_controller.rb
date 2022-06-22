@@ -28,6 +28,10 @@ class FriendshipsController < ApplicationController
       flash[:success] = 'Friend Request Accepted!'
       @friendship2 = current_user.friend_sent.build(sent_to_id: params[:board_id], status: true)
       @friendship2.save
+      if Notification.where(user_id:current_user.id,notice_id:params[:board_id],notice_type:"friendRequest",seen:false).exists?
+        @notification = Notification.where(user_id:current_user.id,notice_id:params[:board_id],notice_type:"friendRequest",seen:false).first
+        @notification.update(seen:true)
+      end
     else
       flash[:danger] = 'Friend Request could not be accepted!'
     end
@@ -40,6 +44,10 @@ class FriendshipsController < ApplicationController
 
     @friendship.destroy
     flash[:success] = 'Friend Request Declined!'
+    if Notification.where(user_id:current_user.id,notice_id:params[:board_id],notice_type:"friendRequest",seen:false).exists?
+      @notification = Notification.where(user_id:current_user.id,notice_id:params[:board_id],notice_type:"friendRequest",seen:false).first
+      @notification.update(seen:true)
+    end
     redirect_back(fallback_location: root_path)
   end
 end

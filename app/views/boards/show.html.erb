@@ -13,6 +13,19 @@
                         </div>
                         <% if @user == current_user %>
                             <%= link_to "Advanced", edit_user_registration_path, class: "is-small" %>
+                        <% else %>
+                            <% if possible_friend?(@user, current_user) and not friend?(@user, current_user)%>
+                                 <div class="panel-block is-flex is-flex-direction-column">
+                                    <div class="is-flex">
+                                        <div class="button is-primary is-small">
+                                            <%= link_to "Add as friend", accept_friend_board_friendships_path(@user), style:"color:white;"%>
+                                        </div>
+                                        <div class="button is-danger is-small">
+                                            <%= link_to "Decline",decline_friend_board_friendships_path(@user), style:"color:white;", turbo_confirm: "Are you sure? " %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%end%>
                         <% end %>
                         <div class="panel-block is-flex is-justify-content-space-between">
                             <%= render '/shared/indicators', person: @user  %>

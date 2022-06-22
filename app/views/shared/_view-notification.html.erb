@@ -1,7 +1,11 @@
  <% if notice.notice_type == "friendRequest"%>
-            <small><strong><%= notice_element.name%></strong> want to be your friend</small>
-        <% elsif notice.notice_type == "like-post" %>
-            <small><strong>A post</strong> has a like +</small>
+    <%= link_to notice_element.name,boards_show_path(notice_element), class: "is-strong is-small" %>
+        <small> want to be your friend</small>
+
+<% elsif notice.notice_type == "like-post" %>
+            
+                <small><strong>A post</strong> has a like +</small>
+            
         <% elsif notice.notice_type == "like-comment" %>
             <small><strong><%=notice_element.user.name%> </strong> has give like your post</small>
         <% elsif notice.notice_type == "like-user" %>
