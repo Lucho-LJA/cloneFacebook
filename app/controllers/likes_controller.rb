@@ -18,9 +18,9 @@ class LikesController < ApplicationController
         #flash[:success] = "#{type} liked!"
         @notification = new_notification(@subject.user, @subject.id,
                                          notice_type) if type == 'post'
-        @notification = new_notification(@subject.post.user, @subject.id,
+        @notification = new_notification(@subject.user, @subject.id,
                                          notice_type) if type == 'comment'
-        @notification = new_notification(@subject.id, current_user.id,
+        @notification = new_notification(@subject, current_user.id,
                                           notice_type) if type == 'user'
         @notification.save
       else

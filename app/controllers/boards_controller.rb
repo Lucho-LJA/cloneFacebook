@@ -16,4 +16,11 @@ class BoardsController < ApplicationController
   def edit
 
   end
+  def like_person
+    if Notification.where(user_id:current_user.id,notice_type:"like-user",seen:false).exists?
+      @notification = Notification.where(user_id:current_user.id,notice_type:"like-user",seen:false).first
+      @notification.update(seen:true)
+    end
+    redirect_to root_path
+  end
 end

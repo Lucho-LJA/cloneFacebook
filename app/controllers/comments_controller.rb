@@ -10,6 +10,10 @@ class CommentsController < ApplicationController
       @notification = Notification.where(user_id:current_user.id,notice_id:params[:id],notice_type:"comment",seen:false).first
       @notification.update(seen:true)
     end
+    if Notification.where(user_id:current_user.id,notice_id:params[:id],notice_type:"like-comment",seen:false).exists?
+      @notification = Notification.where(user_id:current_user.id,notice_id:params[:id],notice_type:"like-comment",seen:false).first
+      @notification.update(seen:true)
+    end
     redirect_to post_path(@post)
   end
   def create

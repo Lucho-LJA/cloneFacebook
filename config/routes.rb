@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       end
     end
     resources :likes, only: %i[create]
+    collection do
+      get 'like_person'
+    end
   end
   resources :posts, only: %i[index new create show destroy] do
     resources :likes, only: %i[create]

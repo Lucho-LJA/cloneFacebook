@@ -95,7 +95,6 @@ module ApplicationHelper
     return Post.find(notice.notice_id) if type == 'like-post'
     return unless type == 'like-comment'
     comment = Comment.find(notice.notice_id)
-    Post.find(comment.post_id)
   end
   ###
 end

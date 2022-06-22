@@ -5,10 +5,12 @@
 <% elsif notice.notice_type == "like-post" %>
         <small> <%= link_to "A post ",post_path(notice_element), class: "is-strong is-small" %>has a like +</small>
             
-        <% elsif notice.notice_type == "like-comment" %>
-            <small><strong><%=notice_element.user.name%> </strong> has give like your post</small>
-        <% elsif notice.notice_type == "like-user" %>
-            <small><strong><%=notice_element.notice_id.name%> </strong> has give you a like</small>
+<% elsif notice.notice_type == "like-comment" %>
+    <small>You like a like + in </small>
+    <%= link_to "your post",comment_path(notice_element), class: "is-strong is-small" %>
+<% elsif notice.notice_type == "like-user" %>
+    <small><strong><%=User.find(notice.notice_id).name%> </strong> has give </small>
+    <%= link_to "you a like",like_person_boards_path(notice.user), class: "is-strong is-small" %>
 <% elsif notice.notice_type == "comment" %>
     <small><%= notice_element.user.name %> has commented</small>
     <%= link_to "your post",comment_path(notice_element), class: "is-strong is-small" %>
