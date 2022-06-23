@@ -4,7 +4,6 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable,
          :omniauthable, omniauth_providers: [:facebook, :github, :google_oauth2]
   
   has_many :posts, dependent: :destroy
