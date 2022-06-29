@@ -4,7 +4,7 @@
 
 CloneFacebook is a Web page about [Odin Projet](https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project) built with Ruby on Rails. The project is a simple social network similar to facebook where a person can sign up with a email and password or external account of facebook, google or github. The users can post, comment the post, add a friend and like post, comments and receive the notification.
 
-The web page you can see and test online in `CloneFacebook`
+The web page you can see and test online in [CloneFacebook](https://boiling-eyrie-13233.herokuapp.com/)
 
 ## Requeriments
 
